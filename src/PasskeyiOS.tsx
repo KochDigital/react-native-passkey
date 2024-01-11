@@ -20,10 +20,12 @@ export class PasskeyiOS {
     withSecurityKey = false
   ): Promise<PasskeyRegistrationResult> {
     // Extract the required data from the attestation request
+    console.log(`PasskeyiOS.register: got request: ${JSON.stringify(request, null, 2)}`);
     const { rpId, challenge, name, userID } =
       this.prepareRegistrationRequest(request);
 
     try {
+      console.log(`PasskeyiOS.register: calling NativePasskey.register with rpId: ${rpId}, challenge: ${challenge}, name: ${name}, userID: ${userID}, withSecurityKey: ${withSecurityKey}`);
       const response = await NativePasskey.register(
         rpId,
         challenge,
@@ -31,6 +33,7 @@ export class PasskeyiOS {
         userID,
         withSecurityKey
       );
+      console.log(`PasskeyiOS.register: got response: ${JSON.stringify(response, null, 2)}`);
       return this.handleNativeRegistrationResult(response);
     } catch (error) {
       throw handleNativeError(error);
