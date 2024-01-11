@@ -8,18 +8,18 @@ class Passkey: NSObject {
   func register(_ identifier: String, challenge: String, displayName: String, userId: String, securityKey: Bool, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
 
     NSLog("challenge %@", challenge)
-    if let data = challenge.data(using: .utf8) {
-      let base64encoded = data.base64EncodedString()
+    if let challengeData = challenge.data(using: .utf8) {
+      let base64encoded = challengeData.base64EncodedString()
       NSLog("base64encoded %@",base64encoded)
     }else{
       NSLog("challenge base64encoded failed")
     }
 
     // Convert challenge and userId to correct type
-    guard let challengeData: Data = Data(base64Encoded: challenge) else {
-      reject(PassKeyError.invalidChallenge.rawValue, PassKeyError.invalidChallenge.rawValue, nil);
-      return;
-    }
+//    guard let challengeData: Data = Data(base64Encoded: challenge) else {
+//      reject(PassKeyError.invalidChallenge.rawValue, PassKeyError.invalidChallenge.rawValue, nil);
+//      return;
+//    }
     let userIdData: Data = RCTConvert.nsData(userId);
 
     // Check if Passkeys are supported on this OS version
