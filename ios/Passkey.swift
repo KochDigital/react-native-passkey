@@ -7,9 +7,9 @@ class Passkey: NSObject {
   @objc(register:withChallenge:withDisplayName:withUserId:withSecurityKey:withResolver:withRejecter:)
   func register(_ identifier: String, challenge: String, displayName: String, userId: String, securityKey: Bool, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
 
-    let challengeData;
+    let challengeData = challenge.data(using: .utf8);
     NSLog("challenge %@", challenge)
-    if challengeData = challenge.data(using: .utf8) {
+    if challengeData {
       NSLog("challengeData %@",challengeData)
       let base64encoded = challengeData.base64EncodedString()
       NSLog("base64encoded challengeData %@",base64encoded)
