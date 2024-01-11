@@ -7,7 +7,7 @@ class Passkey: NSObject {
   @objc(register:withChallenge:withDisplayName:withUserId:withSecurityKey:withResolver:withRejecter:)
   func register(_ identifier: String, challenge: String, displayName: String, userId: String, securityKey: Bool, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
 
-    NSLog("challenge %s", challenge)
+    NSLog("challenge %@", challenge)
     // Convert challenge and userId to correct type
     guard let challengeData: Data = Data(base64Encoded: challenge) else {
       reject(PassKeyError.invalidChallenge.rawValue, PassKeyError.invalidChallenge.rawValue, nil);
