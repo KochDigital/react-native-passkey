@@ -8,6 +8,10 @@ class Passkey: NSObject {
   func register(_ identifier: String, challenge: String, displayName: String, userId: String, securityKey: Bool, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
 
     NSLog("challenge %@", challenge)
+    if let data = challenge.data(using: .utf8) {
+      let base64encoded = data.base64EncodedString()
+      print(base64encoded)
+    }
     // Convert challenge and userId to correct type
     guard let challengeData: Data = Data(base64Encoded: challenge) else {
       reject(PassKeyError.invalidChallenge.rawValue, PassKeyError.invalidChallenge.rawValue, nil);
