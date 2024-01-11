@@ -10,8 +10,11 @@ class Passkey: NSObject {
     NSLog("challenge %@", challenge)
     if let data = challenge.data(using: .utf8) {
       let base64encoded = data.base64EncodedString()
-      print(base64encoded)
+      NSLog("base64encoded %@",base64encoded)
+    }else{
+      NSLog("challenge base64encoded failed")
     }
+
     // Convert challenge and userId to correct type
     guard let challengeData: Data = Data(base64Encoded: challenge) else {
       reject(PassKeyError.invalidChallenge.rawValue, PassKeyError.invalidChallenge.rawValue, nil);
