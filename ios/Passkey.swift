@@ -9,7 +9,7 @@ class Passkey: NSObject {
 
     let challengeData = challenge.data(using: .utf8);
     NSLog("challenge %@", challenge)
-    if challengeData {
+    if challengeData != nil {
       NSLog("challengeData %@",challengeData)
       let base64encoded = challengeData.base64EncodedString()
       NSLog("base64encoded challengeData %@",base64encoded)
