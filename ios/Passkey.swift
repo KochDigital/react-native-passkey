@@ -10,10 +10,10 @@ class Passkey: NSObject {
     // Convert challenge and userId to correct type
     guard let challengeData: Data = Data(base64Encoded: challenge) else {
       NSLog("challenge %@", challenge)
-      NSLog("challengeData %@",challengeData)
       reject(PassKeyError.invalidChallenge.rawValue, PassKeyError.invalidChallenge.rawValue, nil);
       return;
     }
+    NSLog("challengeData %@",challengeData)
     
     let userIdData: Data = RCTConvert.nsData(userId);
 
