@@ -1,16 +1,13 @@
 import AuthenticationServices
-import os
 
 @objc(Passkey)
 class Passkey: NSObject {
   var passKeyDelegate: PasskeyDelegate?;
-
-  var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "passkey")
   
   @objc(register:withChallenge:withDisplayName:withUserId:withSecurityKey:withResolver:withRejecter:)
   func register(_ identifier: String, challenge: String, displayName: String, userId: String, securityKey: Bool, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
 
-    logger.log("challengeData = \(challengeData)")
+    NSLog("challengeData %s", challengeData)
     // Convert challenge and userId to correct type
     guard let challengeData: Data = Data(base64Encoded: challenge) else {
       reject(PassKeyError.invalidChallenge.rawValue, PassKeyError.invalidChallenge.rawValue, nil);
