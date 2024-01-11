@@ -7,10 +7,12 @@ class Passkey: NSObject {
   @objc(register:withChallenge:withDisplayName:withUserId:withSecurityKey:withResolver:withRejecter:)
   func register(_ identifier: String, challenge: String, displayName: String, userId: String, securityKey: Bool, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
 
+    let challengeData;
     NSLog("challenge %@", challenge)
-    if let challengeData = challenge.data(using: .utf8) {
+    if challengeData = challenge.data(using: .utf8) {
+      NSLog("challengeData %@",challengeData)
       let base64encoded = challengeData.base64EncodedString()
-      NSLog("base64encoded %@",base64encoded)
+      NSLog("base64encoded challengeData %@",base64encoded)
     }else{
       NSLog("challenge base64encoded failed")
     }
