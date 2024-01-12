@@ -44,7 +44,7 @@ class Passkey: NSObject {
         }
         // UFFE DEBUG
         if(result != nil){
-          print(String(format: "result %@", result!));
+          print(String(format: "result %@", result));
         }
 
 
