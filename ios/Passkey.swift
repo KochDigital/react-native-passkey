@@ -12,7 +12,7 @@ class Passkey: NSObject {
       reject(PassKeyError.invalidChallenge.rawValue, PassKeyError.invalidChallenge.rawValue, nil);
       return;
     }
-    if challenge {
+    if (challenge != nil) {
         NSLog("SPILNU-PASSKEY challenge %@", challenge)
     }
     let userIdData: Data = RCTConvert.nsData(userId);
@@ -46,9 +46,15 @@ class Passkey: NSObject {
         // UFFE DEBUG
         if(result != nil){
           if(result?.registrationResult != nil){
-            NSLog("SPILNU-PASSKEY result.registrationResult.credentialID: %@",result?.registrationResult?.credentialID)
-            NSLog("SPILNU-PASSKEY result.registrationResult.rawClientDataJSON: %@",result?.registrationResult?.rawClientDataJSON)
-            NSLog("SPILNU-PASSKEY result.registrationResult.credentialID: %@",result?.registrationResult?.credentialID)
+            if(result?.registrationResult?.credentialID != nil){
+              NSLog("SPILNU-PASSKEY result.registrationResult.credentialID: %@",result?.registrationResult?.credentialID)
+            }
+            if(result?.registrationResult?.rawClientDataJSON != nil){
+              NSLog("SPILNU-PASSKEY result.registrationResult.rawClientDataJSON: %@",result?.registrationResult?.rawClientDataJSON)
+            }
+            if(result?.registrationResult?.credentialID != nil){
+              NSLog("SPILNU-PASSKEY result.registrationResult.credentialID: %@",result?.registrationResult?.credentialID)
+            }
           }else{
             NSLog("SPILNU-PASSKEY result.registrationResult is nil")
           }
