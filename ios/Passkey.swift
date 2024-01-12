@@ -66,12 +66,12 @@ class Passkey: NSObject {
         if let registrationResult = result?.registrationResult {
           // Return a NSDictionary instance with the received authorization data
           let authResponse: NSDictionary = [
-            "rawAttestationObject": Base64FS.encodeString(str: registrationResult.rawAttestationObject),
-            "rawClientDataJSON": Base64FS.encodeString(str: registrationResult.rawClientDataJSON)
+            "rawAttestationObject": String(decoding: Base64FS.encode(data: registrationResult.rawAttestationObject), as: UTF8.self),
+            "rawClientDataJSON": String(decoding: Base64FS.encode(data: registrationResult.rawClientDataJSON), as: UTF8.self)
           ];
 
           let authResult: NSDictionary = [
-            "credentialID": Base64FS.encodeString(str: registrationResult.credentialID),
+            "credentialID": String(decoding: Base64FS.encode(str: registrationResult.credentialID), as: UTF8.self),
             "response": authResponse
           ]
           resolve(authResult);
