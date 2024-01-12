@@ -9,11 +9,12 @@ class Passkey: NSObject {
 
     // Convert challenge and userId to correct type
     guard let challengeData: Data = Data(base64Encoded: challenge) else {
-      NSLog("SPILNU-PASSKEY challenge %@", challenge)
       reject(PassKeyError.invalidChallenge.rawValue, PassKeyError.invalidChallenge.rawValue, nil);
       return;
     }
-    
+    if challenge {
+        NSLog("SPILNU-PASSKEY challenge %@", challenge)
+    }
     let userIdData: Data = RCTConvert.nsData(userId);
 
     // Check if Passkeys are supported on this OS version
@@ -45,14 +46,14 @@ class Passkey: NSObject {
         // UFFE DEBUG
         if(result != nil){
           if(result?.registrationResult != nil){
-            print("SPILNU-PASSKEY result.registrationResult.credentialID: \(result?.registrationResult?.credentialID)")
-            print("SPILNU-PASSKEY result.registrationResult.rawClientDataJSON: \(result?.registrationResult?.rawClientDataJSON)")
-            print("SPILNU-PASSKEY result.registrationResult.credentialID: \(result?.registrationResult?.credentialID)")
+            NSLog("SPILNU-PASSKEY result.registrationResult.credentialID: %@",result?.registrationResult?.credentialID)
+            NSLog("SPILNU-PASSKEY result.registrationResult.rawClientDataJSON: %@",result?.registrationResult?.rawClientDataJSON)
+            NSLog("SPILNU-PASSKEY result.registrationResult.credentialID: %@",result?.registrationResult?.credentialID)
           }else{
-            print("SPILNU-PASSKEY result.registrationResult is nil")
+            NSLog("SPILNU-PASSKEY result.registrationResult is nil")
           }
         }else{
-            print("SPILNU-PASSKEY result is nil")
+            NSLog("SPILNU-PASSKEY result is nil")
         } 
 
         // Check if the result object contains a valid registration result
