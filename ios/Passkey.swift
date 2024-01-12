@@ -44,10 +44,10 @@ class Passkey: NSObject {
         }
         // UFFE DEBUG
         if(result != nil){
-          if(result.registrationResult != nil){
-            print("SPILNU-PASSKEY result.registrationResult.credentialID: \(result.registrationResult.credentialID)")
-            print("SPILNU-PASSKEY result.registrationResult.rawClientDataJSON: \(result.registrationResult.rawClientDataJSON)")
-            print("SPILNU-PASSKEY result.registrationResult.credentialID: \(result.registrationResult.credentialID)")
+          if(result?.registrationResult != nil){
+            print("SPILNU-PASSKEY result.registrationResult.credentialID: \(result?.registrationResult?.credentialID)")
+            print("SPILNU-PASSKEY result.registrationResult.rawClientDataJSON: \(result?.registrationResult?.rawClientDataJSON)")
+            print("SPILNU-PASSKEY result.registrationResult.credentialID: \(result?.registrationResult?.credentialID)")
           }else{
             print("SPILNU-PASSKEY result.registrationResult is nil")
           }
