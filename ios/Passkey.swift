@@ -13,7 +13,6 @@ class Passkey: NSObject {
       reject(PassKeyError.invalidChallenge.rawValue, PassKeyError.invalidChallenge.rawValue, nil);
       return;
     }
-    NSLog("challengeData %@",challengeData)
     
     let userIdData: Data = RCTConvert.nsData(userId);
 
