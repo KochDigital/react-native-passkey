@@ -8,7 +8,7 @@ class Passkey: NSObject {
   func register(_ identifier: String, challenge: String, displayName: String, userId: String, securityKey: Bool, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
 
     // Convert challenge and userId to correct type
-    guard let challengeData: Data = Data(base64Encoded: challenge) else {
+    guard let challengeData: Data = Data(Base64FS.encode(data: challenge)) else {
       reject(PassKeyError.invalidChallenge.rawValue, PassKeyError.invalidChallenge.rawValue, nil);
       return;
     }
@@ -66,12 +66,12 @@ class Passkey: NSObject {
         if let registrationResult = result?.registrationResult {
           // Return a NSDictionary instance with the received authorization data
           let authResponse: NSDictionary = [
-            "rawAttestationObject": registrationResult.rawAttestationObject.base64EncodedString(),
-            "rawClientDataJSON": registrationResult.rawClientDataJSON.base64EncodedString()
+            "rawAttestationObject": Base64FS.encodeString(str: registrationResult.rawAttestationObject),
+            "rawClientDataJSON": Base64FS.encodeString(str: registrationResult.rawClientDataJSON)
           ];
 
           let authResult: NSDictionary = [
-            "credentialID": registrationResult.credentialID.base64EncodedString(),
+            "credentialID": Base64FS.encodeString(str: registrationResult.credentialID),
             "response": authResponse
           ]
           resolve(authResult);
