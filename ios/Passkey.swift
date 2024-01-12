@@ -42,6 +42,11 @@ class Passkey: NSObject {
           reject(passkeyError.rawValue, passkeyError.rawValue, nil);
           return;
         }
+        // UFFE DEBUG
+        if(result != nil){
+          NSLog("result %@", result!)
+        }
+
 
         // Check if the result object contains a valid registration result
         if let registrationResult = result?.registrationResult {
