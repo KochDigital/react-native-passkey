@@ -47,13 +47,13 @@ class Passkey: NSObject {
         if(result != nil){
           if(result?.registrationResult != nil){
             if(result?.registrationResult?.credentialID != nil){
-              NSLog("SPILNU-PASSKEY result.registrationResult.credentialID: %@",result?.registrationResult?.credentialID)
+              NSLog("SPILNU-PASSKEY result.registrationResult.credentialID not nil")
             }
             if(result?.registrationResult?.rawClientDataJSON != nil){
-              NSLog("SPILNU-PASSKEY result.registrationResult.rawClientDataJSON: %@",result?.registrationResult?.rawClientDataJSON)
+              NSLog("SPILNU-PASSKEY result.registrationResult.rawClientDataJSON not nil")
             }
             if(result?.registrationResult?.credentialID != nil){
-              NSLog("SPILNU-PASSKEY result.registrationResult.credentialID: %@",result?.registrationResult?.credentialID)
+              NSLog("SPILNU-PASSKEY result.registrationResult.credentialId not nil")
             }
           }else{
             NSLog("SPILNU-PASSKEY result.registrationResult is nil")
